@@ -123,3 +123,6 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
+// Note: Designed to run efficiently on ARM-based Node.js environments (e.g., AWS Graviton)
+// via the node:20-alpine multi-arch Docker image.
