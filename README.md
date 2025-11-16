@@ -18,7 +18,6 @@ API client under src/lib/api.ts
 
 Componentized dashboard (cards, charts, inputs, sections)
 
-Built with Cursor & Lovable for rapid iteration
 
 Backend: Node.js + Express + TypeScript
 
