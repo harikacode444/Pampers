@@ -49,3 +49,7 @@ Mock Braze client following real REST API schema
 EU-01 cluster-compatible endpoint structure
 
 Demonstrates how P&G could fully automate Braze Canvas creation
+
+<img width="2519" height="1080" alt="image" src="https://github.com/user-attachments/assets/64ec54ed-1a58-47ae-acfd-bfe55116a15c" />
+<img width="2036" height="995" alt="image" src="https://github.com/user-attachments/assets/21e1b22f-6850-42dc-a06b-edfac6ffbd5f" />
+
