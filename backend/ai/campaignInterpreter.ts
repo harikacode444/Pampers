@@ -5,12 +5,52 @@ export const interpretCampaignBrief = async (brief: string): Promise<CampaignSpe
   const lowerBrief = brief.toLowerCase();
   
   // Extract markets from brief - handle formats like "US, DE and ES" or "US and ES"
+  // Supporting 20+ countries for Junction challenge
   const marketKeywords: { [key: string]: string[] } = {
-    'US': ['us', 'united states', 'usa', 'u.s.', 'u.s.a.'],
-    'DE': ['de', 'germany', 'german'],
-    'ES': ['es', 'spain', 'spanish'],
+    'US': ['us', 'united states', 'usa', 'u.s.', 'u.s.a.', 'america', 'american'],
+    'DE': ['de', 'germany', 'german', 'deutschland'],
+    'ES': ['es', 'spain', 'spanish', 'espana'],
     'FR': ['fr', 'france', 'french'],
-    'UK': ['uk', 'united kingdom', 'britain', 'british'],
+    'UK': ['uk', 'united kingdom', 'britain', 'british', 'england'],
+    'IT': ['it', 'italy', 'italian', 'italia'],
+    'NL': ['nl', 'netherlands', 'dutch', 'holland'],
+    'BE': ['be', 'belgium', 'belgian'],
+    'PL': ['pl', 'poland', 'polish'],
+    'CZ': ['cz', 'czech', 'czech republic'],
+    'AT': ['at', 'austria', 'austrian'],
+    'CH': ['ch', 'switzerland', 'swiss'],
+    'PT': ['pt', 'portugal', 'portuguese'],
+    'GR': ['gr', 'greece', 'greek'],
+    'TR': ['tr', 'turkey', 'turkish'],
+    'RU': ['ru', 'russia', 'russian'],
+    'JP': ['jp', 'japan', 'japanese'],
+    'CN': ['cn', 'china', 'chinese'],
+    'IN': ['in', 'india', 'indian'],
+    'BR': ['br', 'brazil', 'brazilian'],
+    'MX': ['mx', 'mexico', 'mexican'],
+    'AR': ['ar', 'argentina', 'argentinian'],
+    'AU': ['au', 'australia', 'australian'],
+    'NZ': ['nz', 'new zealand'],
+    'ZA': ['za', 'south africa'],
+  };
+  
+  // Map markets to languages
+  const marketToLanguages: { [key: string]: string[] } = {
+    'US': ['en'], 'UK': ['en'], 'AU': ['en'], 'NZ': ['en'], 'ZA': ['en'],
+    'DE': ['de'], 'AT': ['de'], 'CH': ['de'],
+    'ES': ['es'], 'MX': ['es'], 'AR': ['es'],
+    'FR': ['fr'], 'BE': ['fr'],
+    'IT': ['it'], 'CH': ['it'],
+    'NL': ['nl'], 'BE': ['nl'],
+    'PL': ['pl'],
+    'CZ': ['cs'],
+    'PT': ['pt'], 'BR': ['pt'],
+    'GR': ['el'],
+    'TR': ['tr'],
+    'RU': ['ru'],
+    'JP': ['ja'],
+    'CN': ['zh'],
+    'IN': ['en', 'hi'],
   };
   
   const markets: string[] = [];
@@ -25,10 +65,10 @@ export const interpretCampaignBrief = async (brief: string): Promise<CampaignSpe
       if (!markets.includes(code)) {
         markets.push(code);
         // Map markets to languages
-        if (code === 'US' || code === 'UK') languages.push('en');
-        if (code === 'DE') languages.push('de');
-        if (code === 'ES') languages.push('es');
-        if (code === 'FR') languages.push('fr');
+        const langs = marketToLanguages[code] || ['en'];
+        langs.forEach(lang => {
+          if (!languages.includes(lang)) languages.push(lang);
+        });
       }
     }
   }
@@ -40,10 +80,10 @@ export const interpretCampaignBrief = async (brief: string): Promise<CampaignSpe
         if (!markets.includes(market)) {
           markets.push(market);
           // Map markets to languages
-          if (market === 'US' || market === 'UK') languages.push('en');
-          if (market === 'DE') languages.push('de');
-          if (market === 'ES') languages.push('es');
-          if (market === 'FR') languages.push('fr');
+          const langs = marketToLanguages[market] || ['en'];
+          langs.forEach(lang => {
+            if (!languages.includes(lang)) languages.push(lang);
+          });
         }
       }
     });

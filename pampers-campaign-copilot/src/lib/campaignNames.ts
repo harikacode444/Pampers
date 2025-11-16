@@ -25,13 +25,23 @@ export const getFriendlyCampaignName = (campaignName: string): string => {
   // Get theme info or default
   const themeInfo = themeMap[theme] || { name: theme, emoji: "📢" };
 
-  // Format markets
+  // Format markets - supporting 20+ countries
   const marketNames: { [key: string]: string } = {
-    US: "United States",
-    DE: "Germany",
-    ES: "Spain",
-    FR: "France",
-    UK: "United Kingdom",
+    US: "United States", UK: "United Kingdom", AU: "Australia", NZ: "New Zealand", ZA: "South Africa",
+    DE: "Germany", AT: "Austria", CH: "Switzerland",
+    ES: "Spain", MX: "Mexico", AR: "Argentina",
+    FR: "France", BE: "Belgium",
+    IT: "Italy",
+    NL: "Netherlands",
+    PL: "Poland",
+    CZ: "Czech Republic",
+    PT: "Portugal", BR: "Brazil",
+    GR: "Greece",
+    TR: "Turkey",
+    RU: "Russia",
+    JP: "Japan",
+    CN: "China",
+    IN: "India",
   };
 
   const friendlyMarkets = markets
